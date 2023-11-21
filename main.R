@@ -44,7 +44,7 @@ convert_to_matrix <- function(single_data_eval) {
     learner_base <- single_data_eval[opt_i, ]
     for (opt_j in seq(1, number_optimizer)[-opt_i]) {
       learner_comp <- single_data_eval[opt_j, ]
-      if (all(learner_base < learner_comp)) {
+      if (all(learner_base > learner_comp)) {
         graph_mat[opt_i, opt_j] <- 1
       }
     }
@@ -176,7 +176,7 @@ for (func_index in unique(data_filter$funcId)) {
       filter(dimension == dim_index) %>%
       filter(funcId == func_index) %>%
       filter(algorithm %in% algo_index)
-    smallest_precision <- min(unique(data_inner$precision))
+    smallest_precision <- max(unique(data_inner$precision))
     data_inner <- data_inner %>% filter(precision == smallest_precision)
     row_full_res <- intersect(which(full_res$optimizer == algo_index),
                               which(full_res$funcId == func_index))
@@ -184,6 +184,12 @@ for (func_index in unique(data_filter$funcId)) {
     }
   }
 }
+
+# NA means that the optimizer did never reach the necessary precision, thus we set
+# them all to Inf (infinity)
+colSums(is.na(full_res))
+full_res[is.na(full_res)] <- Inf
+
 
 colSums(is.na(full_res))
 dim(full_res)
