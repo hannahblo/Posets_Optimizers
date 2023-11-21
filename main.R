@@ -152,7 +152,7 @@ plot_result <- function(names_columns, item_number, depth_value,
 
 
 load("bbob_ranking.Rdata")
-View(data)
+#View(data)
 
 # Step 1: filter those data needed
 unique(data$algorithm)
