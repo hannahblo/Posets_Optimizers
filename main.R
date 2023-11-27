@@ -238,7 +238,6 @@ plot_result <- function(names_columns, item_number, depth_value,
 # # Thus in what follow we build based on each function ID one single poset
 #
 # # Problem -> NAs exists. We set in the following NA to zero
-<<<<<<< HEAD
 # full_res[is.na(full_res)] <- Inf
 #
 # funcId <- as.factor(seq(1, 24))
@@ -727,44 +726,6 @@ plot_result <- function(names_columns, item_number, depth_value,
 # funcId <- unique(full_res[, 1])
 
 
-=======
-# full_res[is.na(full_res)] <- 0
-
-
-load("bbob_ranking.Rdata")
-#View(data)
-
-# Step 1: filter those data needed
-unique(data$algorithm)
-optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
-                        "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
-                        "IPOP-CMA-ES", "G3PCX"))
-data_filter <- data %>% filter(algorithm %in% optimizer_interest)
-full_res <- data.frame(funcId = sort(rep(seq(1,24), 11)),
-                       optimizer = rep(optimizer_interest, 24),
-                       ERT_2 = rep(FALSE, 11*24),
-                       ERT_3 = rep(FALSE, 11*24),
-                       ERT_5 = rep(FALSE, 11*24),
-                       ERT_10 = rep(FALSE, 11*24),
-                       ERT_20 = rep(FALSE, 11*24),
-                       ERT_40 = rep(FALSE, 11*24))
-
-for (func_index in unique(data_filter$funcId)) {
-  for (dim_index in unique(data_filter$dimension)) {
-    for (algo_index in optimizer_interest) {
-    data_inner <- data_filter %>%
-      filter(dimension == dim_index) %>%
-      filter(funcId == func_index) %>%
-      filter(algorithm %in% algo_index)
-    smallest_precision <- min(unique(data_inner$precision))
-    data_inner <- data_inner %>% filter(precision == smallest_precision)
-    row_full_res <- intersect(which(full_res$optimizer == algo_index),
-                              which(full_res$funcId == func_index))
-    full_res[row_full_res, paste0("ERT_", dim_index)] <- data_inner[1, "ert"]
-    }
-  }
-}
->>>>>>> main
 
 
 
