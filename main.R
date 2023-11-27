@@ -13,18 +13,29 @@
 # devtools::install_github("hannahblo/ddandrda")
 library(ddandrda)
 
+### Information about packages oofos. This package is under developement on git.
+# Note that to install this package, the R-package gurobi is needed. This is an
+# remove.packages("oofos")
+# if (!require("BiocManager", quietly = TRUE))
+#   install.packages("BiocManager")
+# BiocManager::install("RBGL")
+# install.packages("gurobi")
+# install.packages("devtools")
+# devtools::install_github("schollmeyer/oofos")
+library(oofos)
+
 ### All the other R-packages are on CRAN packages (06.10.2023)
 library(reshape)
 library(dplyr)
 library(data.table)
-library(ggplot2)
+library(ggplot2) # bis hier
 library(forcats)
 library(gridExtra)
 library(stargazer)
 library(prefmod)
 library(reshape2)
 library(utils)
-library(hasseDiagram)
+library(hasseDiagram) # therefore one needs Rgraphviz and graph packe --> to install this one needs Bioconductor
 
 # setwd("RCode/")
 
@@ -60,7 +71,73 @@ convert_to_matrix <- function(single_data_eval) {
   return(graph_mat)
 }
 
+#####
+#
+# Preparation of computing the ufg premises
+# Function to compute the weights of the fc
+get_weighted_representation <- function(x, y = rep(1, dim(x)[1])) {
+  ## computes weighted representation of a data matrix x with duplicated rows,
+  ##  returns unique(x) together with counts: how often appears the column,
+  # mean_y: mean of y in the set of the duplicated columns
+  xd <- data.frame(cbind(x, y))
+  names(xd)[1] <- "v1"
+  v1 <- "v1"
+  p <- dim(x)[2]
+  result <- as.matrix(plyr::ddply(xd, names(xd[(1:p)]), dplyr::summarise, count = length(v1), mean.y = mean(y), sum.y = sum(y)))
+  x_weighted <- result[, (1:p)]
+  colnames(x_weighted) <- colnames(x)
+  return(list(x_weighted = x_weighted, y_weighted = result[, p + 3], mean_y = result[, p + 2], counts = result[, p + 1]))
+}
 
+
+prepare_ufg_premises <- function(list_mat_porders_ml,
+                                 number_items) {
+
+  fc_ml_porder <- ddandrda::compute_conceptual_scaling(input_porder = list_mat_porders_ml)
+  # porder_all <- ddandrda::compute_all_partial_orders(number_items, list = FALSE, complemented = TRUE)
+
+  data_context <- get_weighted_representation(fc_ml_porder) # duplication
+  n_row_context <- nrow(data_context$x_weighted)
+  count_dup <- data_context$counts
+  number_obs <- sum(data_context$counts)
+  list_porder_premises <- ddandrda::convert_context_to_list(data_context$x_weighted[ ,(1:25)],  complemented = FALSE)
+
+  # whole_context <- rbind(data_context$x_weighted, porder_all) # context of all posets
+  # index <- which(!duplicated(whole_context))
+  # whole_context <- whole_context[index,]
+  return(list(count_dup = count_dup,
+              number_obs = number_obs,
+              whole_context = data_context$x_weighted,
+              list_porder_premises = list_porder_premises,
+              n_row_context = n_row_context))
+}
+
+
+
+# Computing the ufg depth based on already computed premises
+compute_ufg_exist_premises <- function(poset_interest, ufg_premises,
+                                       prep_ufg_premises) {
+
+  emp_prob <- prep_ufg_premises$count_dup / prep_ufg_premises$number_obs
+  depth_ufg <- rep(0, length(poset_interest))
+  constant_c <- 0
+
+  for (i in 1:length(ufg_premises)) {
+    # print(paste0("Iteration ", i,  " of ", dim(ufg_premises)[1]))
+    index_premise <- ufg_premises[[i]]
+    prod_emp_ufg <- prod(emp_prob[index_premise])
+    concl_ufg <- ddandrda::test_porder_in_concl(prep_ufg_premises$list_porder_premises[index_premise], poset_interest) * 1
+
+    depth_ufg <- depth_ufg + concl_ufg * prod_emp_ufg
+    constant_c <- constant_c + prod_emp_ufg
+  }
+
+  depth_value <- depth_ufg / constant_c
+
+  return(depth_value)
+
+}
+######
 
 # this plot function returns summaries of the result
 plot_result <- function(names_columns, item_number, depth_value,
@@ -142,8 +219,8 @@ plot_result <- function(names_columns, item_number, depth_value,
 
 ### Version 1
 ### We use the ERT and FV obtained from https://iohanalyzer.liacs.nl/
-#
 # version_computation <- "_1"
+# name_plots <- "1"
 #
 # # fixed target results
 # TR <- read.csv("ERT_Table_Multi_18_11_23.csv")
@@ -161,7 +238,7 @@ plot_result <- function(names_columns, item_number, depth_value,
 # # Thus in what follow we build based on each function ID one single poset
 #
 # # Problem -> NAs exists. We set in the following NA to zero
-# full_res[is.na(full_res)] <- 0
+# full_res[is.na(full_res)] <- Inf
 #
 # funcId <- as.factor(seq(1, 24))
 
@@ -178,6 +255,7 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### The idea is that for each function we use the ERT values for different dimensions
 ### as multiple performance criteria.
 # version_computation <- "_2"
+# name_plots <- "2"
 #
 # load("bbob_ranking.Rdata")
 # # View(data)
@@ -240,51 +318,52 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### Thus, setting these two to incomparable analogously as we define it, is not
 ### necessary meaningful. Thus, we drop these two functIds (that are 18 and 24)
 ### in the following and discuss the same analysis as above
-# version_computation <- "_3"
-#
-# load("bbob_ranking.Rdata")
-# # View(data)
-#
-# # Step 1: filter those data needed
-# unique(data$algorithm)
-# optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
-#                                   "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
-#                                   "IPOP-CMA-ES", "G3PCX"))
-# data_filter <- data %>% filter(algorithm %in% optimizer_interest)
-# full_res <- data.frame(funcId = sort(rep(seq(1,24)[-c(18,24)], 11)),
-#                        optimizer = rep(optimizer_interest, 22),
-#                        ERT_2 = rep(FALSE, 11*22),
-#                        ERT_3 = rep(FALSE, 11*22),
-#                        ERT_5 = rep(FALSE, 11*22),
-#                        ERT_10 = rep(FALSE, 11*22),
-#                        ERT_20 = rep(FALSE, 11*22),
-#                        ERT_40 = rep(FALSE, 11*22))
-#
-# for (func_index in unique(data_filter$funcId)[-c(18,24)]) {
-#   for (dim_index in unique(data_filter$dimension)) {
-#     for (algo_index in optimizer_interest) {
-#       data_inner <- data_filter %>%
-#         filter(dimension == dim_index) %>%
-#         filter(funcId == func_index) %>%
-#         filter(algorithm %in% algo_index)
-#       precision <- max(unique(data_inner$precision))
-#       data_inner <- data_inner %>% filter(precision == precision)
-#       row_full_res <- intersect(which(full_res$optimizer == algo_index),
-#                                 which(full_res$funcId == func_index))
-#       full_res[row_full_res, paste0("ERT_", dim_index)] <- data_inner[1, "ert"]
-#     }
-#   }
-# }
-# funcId <- as.factor(seq(1, 24)[-c(18,24)])
-#
-# # NA means that the optimizer did never reach the necessary precision, thus we set
-# # them all to Inf (infinity)
-# colSums(is.na(full_res))
-# full_res[is.na(full_res)] <- Inf
-# colSums(is.na(full_res))
-# dim(full_res)
-# unique(full_res[which(is.na(full_res$ERT_2)), ]$optimizer)
-# unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
+version_computation <- "_3"
+name_plots <- "3"
+
+load("bbob_ranking.Rdata")
+# View(data)
+
+# Step 1: filter those data needed
+unique(data$algorithm)
+optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
+                                  "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
+                                  "IPOP-CMA-ES", "G3PCX"))
+data_filter <- data %>% filter(algorithm %in% optimizer_interest)
+full_res <- data.frame(funcId = sort(rep(seq(1,24)[-c(18,24)], 11)),
+                       optimizer = rep(optimizer_interest, 22),
+                       ERT_2 = rep(FALSE, 11*22),
+                       ERT_3 = rep(FALSE, 11*22),
+                       ERT_5 = rep(FALSE, 11*22),
+                       ERT_10 = rep(FALSE, 11*22),
+                       ERT_20 = rep(FALSE, 11*22),
+                       ERT_40 = rep(FALSE, 11*22))
+
+for (func_index in unique(data_filter$funcId)[-c(18,24)]) {
+  for (dim_index in unique(data_filter$dimension)) {
+    for (algo_index in optimizer_interest) {
+      data_inner <- data_filter %>%
+        filter(dimension == dim_index) %>%
+        filter(funcId == func_index) %>%
+        filter(algorithm %in% algo_index)
+      precision <- max(unique(data_inner$precision))
+      data_inner <- data_inner %>% filter(precision == precision)
+      row_full_res <- intersect(which(full_res$optimizer == algo_index),
+                                which(full_res$funcId == func_index))
+      full_res[row_full_res, paste0("ERT_", dim_index)] <- data_inner[1, "ert"]
+    }
+  }
+}
+funcId <- as.factor(seq(1, 24)[-c(18,24)])
+
+# NA means that the optimizer did never reach the necessary precision, thus we set
+# them all to Inf (infinity)
+colSums(is.na(full_res))
+full_res[is.na(full_res)] <- Inf
+colSums(is.na(full_res))
+dim(full_res)
+unique(full_res[which(is.na(full_res$ERT_2)), ]$optimizer)
+unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
 
 
 
@@ -413,13 +492,197 @@ plot_result <- function(names_columns, item_number, depth_value,
 
 
 
+### Version 6
+###
+# version_computation <- "_6"
+# name_plots <- "6"
+# load("bbob_ranking.Rdata")
+#
+# unique(data$algorithm)
+# optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
+#                                   "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
+#                                   "IPOP-CMA-ES", "G3PCX"))
+# data_filter <- data %>% filter(algorithm %in% optimizer_interest)
+# full_res <- data.frame(funcId = sort(rep(seq(1,24), 11)),
+#                        optimizer = rep(optimizer_interest, 24),
+#                        ERT_2 = rep(FALSE, 11*24),
+#                        ERT_3 = rep(FALSE, 11*24),
+#                        ERT_5 = rep(FALSE, 11*24),
+#                        ERT_10 = rep(FALSE, 11*24),
+#                        ERT_20 = rep(FALSE, 11*24),
+#                        ERT_40 = rep(FALSE, 11*24))
+#
+# for (func_index in unique(data_filter$funcId)) {
+#   for (dim_index in unique(data_filter$dimension)) {
+#     for (algo_index in optimizer_interest) {
+#       data_inner <- data_filter %>%
+#         filter(dimension == dim_index) %>%
+#         filter(funcId == func_index) %>%
+#         filter(algorithm %in% algo_index)
+#       smallest_precision <- min(unique(data_inner$precision))
+#       data_inner <- data_inner %>% filter(precision == smallest_precision)
+#       row_full_res <- intersect(which(full_res$optimizer == algo_index),
+#                                 which(full_res$funcId == func_index))
+#       full_res[row_full_res, paste0("ERT_", dim_index)] <- data_inner[1, "ert"]
+#     }
+#   }
+# }
+#
+# colSums(is.na(full_res))
+# full_res[is.na(full_res)] <- Inf
+# colSums(is.na(full_res))
+#
+# # begin edit for function value
+# # compute best function value for given time (1000)
+#
+# ## lowest precision that an algo has achieved at time 1000
+# # ERTs higher than 1000 time units
+# full_res_sub <- full_res[,-c(1,2)]
+# full_res_higher <- apply(full_res_sub, 2,  function(x) x < 1000)
+# full_res_fv_bin <- cbind(full_res[,c(1,2)], full_res_higher)
+# # replace NAs (~infinite runtime) by False
+# full_res_fv_bin[is.na(full_res_fv_bin) == TRUE] <- FALSE
+# # now count precision (function values) for which ERT < 1000
+# function_value = apply(full_res_fv_bin[,-c(1,2)], 1, sum)
+# # and append to full_res data frame
+# full_res$function_value = function_value
+#
+# full_res <- full_res[, c(1,2,3,9)]
+#
+# ## Interpretation:
+# # The variable "function value" describes the number of precision values (thresholds)
+# # achieved by an optimizer within a fixed time budget of 1000 time units (seconds?)
+#
+# funcId <- as.factor(seq(1, 24))
+
+
+
+### Version 7
+###
+# version_computation <- "_7"
+# name_plots <- "7"
+# load("bbob_ranking.Rdata")
+# unique(data$algorithm)
+# unique(data$dimension)
+# optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
+#                                   "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
+#                                   "IPOP-CMA-ES", "G3PCX"))
+# data_filter <- data %>% filter(algorithm %in% optimizer_interest)
+# full_res <- data.frame(funcId = sort(rep(seq(1,24), 11)),
+#                        optimizer = rep(optimizer_interest, 24)
+# )
+# for (func_index in unique(data_filter$funcId)) {
+#   for (prec_index in unique(data_filter$precision)) {
+#     for (algo_index in optimizer_interest) {
+#       data_inner <- data_filter %>%
+#         filter(precision == prec_index) %>%
+#         filter(funcId == func_index) %>%
+#         filter(algorithm %in% algo_index)
+#       smallest_dimension <- 2 #min(unique(data_inner$dimension))
+#       data_inner <- data_inner %>% filter(dimension == smallest_dimension)
+#       row_full_res <- intersect(which(full_res$optimizer == algo_index),
+#                                 which(full_res$funcId == func_index))
+#       full_res[row_full_res, paste0("ERT_", prec_index)] <- data_inner[1, "ert"]
+#     }
+#   }
+# }
+#
+# View(full_res)
+# colSums(is.na(full_res))
+# dim(full_res)
+#
+# full_res <- full_res %>% filter(optimizer %in% optimizer_interest)
+#
+# # begin edit for function value
+# # compute best function value for given time (5000)
+# # lowest precision that an algo has achieved at time 5000
+# # ERTs higher than 1000 time units
+# full_res_sub <- full_res[,-c(1,2)]
+# full_res_higher <- apply(full_res_sub, 2,  function(x) x < 5000)
+# full_res_fv_bin <- cbind(full_res[,c(1,2)], full_res_higher)
+# # replace NAs (~infinite runtime) by False
+# full_res_fv_bin[is.na(full_res_fv_bin) == TRUE] <- FALSE
+# # now count precision (function values) for which ERT < 5000
+# function_value = apply(full_res_fv_bin[,-c(1,2)], 1, sum)
+# # and append to full_res data frame
+# full_res$function_value = function_value
+#
+# colSums(is.na(full_res))
+# full_res[is.na(full_res)] <- Inf
+# colSums(is.na(full_res))
+#
+# funcId <- as.factor(seq(1, 24))
+
+
+
+### Version 8
+###
+# version_computation <- "_8"
+# name_plots <- "8"
+# load("bbob_ranking.Rdata")
+# unique(data$algorithm)
+# unique(data$dimension)
+# optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
+#                                   "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
+#                                   "IPOP-CMA-ES", "G3PCX"))
+# data_filter <- data %>% filter(algorithm %in% optimizer_interest)
+# full_res <- data.frame(funcId = sort(rep(seq(1,24), 11)),
+#                        optimizer = rep(optimizer_interest, 24)
+# )
+# for (func_index in unique(data_filter$funcId)) {
+#   for (prec_index in unique(data_filter$precision)) {
+#     for (algo_index in optimizer_interest) {
+#       data_inner <- data_filter %>%
+#         filter(precision == prec_index) %>%
+#         filter(funcId == func_index) %>%
+#         filter(algorithm %in% algo_index)
+#       smallest_dimension <- 2 #min(unique(data_inner$dimension))
+#       data_inner <- data_inner %>% filter(dimension == smallest_dimension)
+#       row_full_res <- intersect(which(full_res$optimizer == algo_index),
+#                                 which(full_res$funcId == func_index))
+#       full_res[row_full_res, paste0("ERT_", prec_index)] <- data_inner[1, "ert"]
+#     }
+#   }
+# }
+#
+# View(full_res)
+# colSums(is.na(full_res))
+# dim(full_res)
+#
+# full_res <- full_res %>% filter(optimizer %in% optimizer_interest)
+#
+# # begin edit for function value
+# # compute best function value for given time (5000)
+# # lowest precision that an algo has achieved at time 5000
+# # ERTs higher than 1000 time units
+# full_res_sub <- full_res[,-c(1,2)]
+# full_res_higher <- apply(full_res_sub, 2,  function(x) x < 5000)
+# full_res_fv_bin <- cbind(full_res[,c(1,2)], full_res_higher)
+# # replace NAs (~infinite runtime) by False
+# full_res_fv_bin[is.na(full_res_fv_bin) == TRUE] <- FALSE
+# # now count precision (function values) for which ERT < 5000
+# function_value = apply(full_res_fv_bin[,-c(1,2)], 1, sum)
+# # and append to full_res data frame
+# full_res$function_value = function_value
+#
+# colSums(is.na(full_res))
+# full_res[is.na(full_res)] <- Inf
+# colSums(is.na(full_res))
+#
+# full_res <- full_res[, -seq(4,8)]
+#
+# funcId <- as.factor(seq(1, 24))
+
+
+
+
 
 
 
 
 
 #### the following procedure is the same for for all upper Versions
-setwd(paste0("results", version_computation, "/"))
+setwd(paste0("result", version_computation, "/"))
 
 # Step 2: convert the data frame into a list of partial orders (posets)
 list_graph <- list()
@@ -447,13 +710,21 @@ for (graph in list_graph) {
 
 
 ### Comments:
-# to Version 1:
-# to Version 2:
-# to Version 3:
+# to Version 1: here we have no problems that two times only Inf vs Inf are compared
+#     thus, we do do not have the question how to include such an information
+#     And all comparisons are indeed a poset
+# to Version 2: for function id 18 and 24 we have the problematic how to deal with
+#     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; FULLNEWUOA)
+# to Version 3: like version 2 just without funcid 18 and 24
 # to Version 4:
 # to Version 5:
-
-
+# to Version 6:
+# to Version 7: for function id 1, 18 and 24 we have the problematic how to deal with
+#     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
+#     --> neither computatiion version 1 nor conputation version 2 worked
+# to Version 8: for function id 1, 18 and 24 we have the problematic how to deal with
+#     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
+#     --> neither computatiion version 1 nor conputation version 2 worked
 ################################################################################
 #
 # PART 1: FIRST IMPRESSION
@@ -461,6 +732,7 @@ for (graph in list_graph) {
 ################################################################################
 
 number_optimizer <- dim(list_graph[[1]])[1]
+optimizer_interest <- colnames(list_graph[[1]])
 
 ### Which edge exists
 length(list_graph) # 80
@@ -472,7 +744,7 @@ Reduce("+", list_graph)
 duplicated(list_graph) # no duplications exist
 
 
-pdf("all_observed.pdf", onefile = TRUE)
+pdf(paste0(name_plots, "_all_observed.pdf"), onefile = TRUE)
 for (i in 1:length(list_graph)) {
   mat <- matrix(as.logical(list_graph[[i]]), ncol = number_optimizer)
   colnames(mat) <- rownames(mat) <- colnames(list_graph[[i]])
@@ -488,7 +760,7 @@ df_edge_exist <- melt(edges)
 df_edge_exist <- df_edge_exist[df_edge_exist$value != 0, ]
 
 
-jpeg(file = "heatmap_UCI.jpeg")
+jpeg(file = paste0(name_plots, "_heatmap.jpeg"))
 ggplot(df_edge_exist, aes(x = Var1, y = Var2)) +
   geom_raster(aes(fill = value)) +
   scale_fill_gradient(low = "lightcyan1", high = "darkcyan") +
@@ -514,23 +786,121 @@ dev.off()
 # PART 2: Computation and Evaluation UFG Depth
 #
 ################################################################################
+################################################################################
+# version 1
+################################################################################
 
-item_number <- 8
-names_columns <- colnames(list_graph[[1]])
+item_number <- dim(list_graph[[1]])[1]
 
 start_time <- Sys.time()
 depth_premises <- ddandrda::compute_ufg_depth_porder(list_graph,
-                                                     print_progress_text = TRUE,
-                                                     save_ufg_premises = TRUE)
+                                                     print_progress_text = TRUE, # if progress should not be shown, set to FALSE
+                                                     save_ufg_premises = FALSE) # sonst evtl zu viele und dann braucht es lange zum abspeichern...
 total_time <- Sys.time() - start_time
-total_time # Time difference of 2.210297 hours
+total_time
 
-# saveRDS(depth_premises, "depth_premises.rds")
-# saveRDS(total_time, "total_time_depth_premises.rds")
+saveRDS(depth_premises, "depth_premises.rds")
+saveRDS(total_time, "total_time_depth_premises.rds")
 
 
 plot_result(names_columns =  optimizer_interest,
             item_number = number_optimizer,
             depth_value =  depth_premises$depth_ufg,
             list_mat_porders_ml = list_graph,
-            file_name_add = "ERT_all_dim")
+            file_name_add = name_plots)
+
+
+
+
+
+################################################################################
+# version 2
+################################################################################
+#
+# ### Compute the VC dimension
+# # Formal context given by the partial orders in list_mat
+fc_ml_porder <- ddandrda::compute_conceptual_scaling(input_porder = list_graph)
+# ml_porder_model <- oofos::compute_extent_vc_dimension(fc_ml_porder)
+# vc_fc_ml_porder <- gurobi::gurobi(ml_porder_model)
+# vc <- vc_fc_ml_porder$objval # 8
+
+
+
+### Compute the ufg-depth
+# Preparation of the computation, needed as input of
+porder_all <- ddandrda::compute_all_partial_orders(item_number, list = FALSE, complemented = TRUE)
+list_porder_all <- ddandrda::compute_all_partial_orders(item_number, list = TRUE, complemented = FALSE)
+
+data_context <- get_weighted_representation(fc_ml_porder) # duplication
+n_row_context <- nrow(data_context$x_weighted)
+count_dup <- data_context$counts
+number_obs <- sum(data_context$counts)
+
+list_ml_porder_unique <- ddandrda::convert_context_to_list(data_context$x_weighted[ ,(1:item_number * item_number)],  complemented = FALSE)
+
+whole_context <- rbind(data_context$x_weighted, porder_all) # context of all posets
+index <- which(!duplicated(whole_context))
+whole_context <- whole_context[index,]
+
+
+
+# Computation of S, see article (1)
+start_time <- Sys.time()
+ufg_premises <- oofos::enumerate_ufg_premises(whole_context, n_row_context) # das ist seltsam
+total_time <- Sys.time() - start_time
+
+# saveRDS(total_time, "total_time.rds")
+# saveRDS(ufg_premises, "ufg_premises.rds")
+# length(ufg_premises)
+
+
+# ufg depth computation
+emp_prob <- count_dup / number_obs
+depth_ufg <- rep(0, length(list_ml_porder_unique))
+constant_c <- 0
+
+for (i in 1:length(ufg_premises)) {
+  # print(paste0("Iteration ", i,  " of ", dim(ufg_premises)[1]))
+  index_premise <- ufg_premises[[i]]
+  if (length(index_premise) < 2) {
+    print(paste0("cardinaltiy ufg_premise is ", length(index_premise)))
+  }
+
+  prod_emp_ufg <- prod(emp_prob[index_premise])
+  concl_ufg <- test_porder_in_concl(list_ml_porder_unique[index_premise], list_ml_porder_unique) * 1
+
+  depth_ufg <- depth_ufg + concl_ufg * prod_emp_ufg
+  constant_c <- constant_c + prod_emp_ufg
+}
+
+depth_value <- depth_ufg / constant_c
+
+
+# Adding duplicate values
+depth_value_all <- c()
+list_data_all <- vector("list", sum(count_dup))
+saving <- 1
+for (i in 1:length(depth_value)) {
+  for (j in 1:count_dup[i]) {
+    list_data_all[[saving]] <- list_ml_porder_unique[[i]]
+    saving <- saving + 1
+  }
+  depth_value_all <- append(depth_value_all, rep(depth_value[i], count_dup[i]))
+
+}
+
+
+# saveRDS(constant_c, "constant_c.rds")
+# saveRDS(depth_ufg, "ufg_depth.rds")
+# saveRDS(vc, "vc.rds")
+# saveRDS(depth_value_all, "depth_values.rds")
+
+
+###########
+prep_ufg_premises <- prepare_ufg_premises(list_graph, number_items = number_classifiers)
+start_time <- Sys.time()
+ufg_premises <- oofos::enumerate_ufg_premises(prep_ufg_premises$whole_context, prep_ufg_premises$n_row_context)
+total_time <- Sys.time() - start_time
+depth_value <- compute_ufg_exist_premises(poset_interest = prep_ufg_premises$list_porder_premises,
+                                          ufg_premises,
+                                          prep_ufg_premises)
