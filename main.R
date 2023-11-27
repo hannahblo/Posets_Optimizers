@@ -147,7 +147,7 @@ plot_result <- function(names_columns, item_number, depth_value,
 
   max_plot_number <- min(max_plot_number, length(list_mat_porders_ml))
 
-  sink(file = paste0(file_name_add, "_summery.txt"))
+  sink(file = paste0(file_name_add, "_summary.txt"))
   print(paste0("The minimal value is ", min(depth_value)))
   print(paste0("The maximal value is ", max(depth_value)))
   print(paste0("The mean value is ", mean(depth_value)))
@@ -443,6 +443,7 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### necessary meaningful. Thus, we drop these functIds (that are c(2, 5, 7, 13, 16, 17, 18, 23, 24))
 ### in the following and discuss the same analysis as above
 # version_computation <- "_5"
+# name_plots <- "5"
 #
 # load("bbob_ranking.Rdata")
 # # View(data)
@@ -492,7 +493,8 @@ plot_result <- function(names_columns, item_number, depth_value,
 
 
 
-
+# TODO
+# ACHTUNG!!!! MACHT DAS ÜBERHAUPT SINN
 ### Version 6
 ### We use the data given by https://dl.p-value.net/2013-ecj_benchmarking/
 ### corresponding to Mersmann, 0. etal (2015): Analyzing the BBOB results by
@@ -501,10 +503,9 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### The selected algorithms correspond to these selected in Section 4.3 of the upper
 ### paper.
 ###
-### We only use the functions with 2 dimensions.
-### We computed the precision values by hand and added this as a performance evaluation
+### We computed the precision values by hand and added this as a performance evaluation on dimnesion 2.
 ###
-### The used performance measures are all possible ERT values and the precision value
+### The used performance measures are all possible ERT values of different dimensions and the precision value
 # version_computation <- "_6"
 # name_plots <- "6"
 # load("bbob_ranking.Rdata")
@@ -572,7 +573,7 @@ plot_result <- function(names_columns, item_number, depth_value,
 ###
 ### We use the data given by https://dl.p-value.net/2013-ecj_benchmarking/
 ### corresponding to Mersmann, 0. etal (2015): Analyzing the BBOB results by
-### means of benchmarking concepts, Evolutionary Compuation
+### means of benchmarking concepts, Evolutionary Computaion
 ###
 ### The selected algorithms correspond to these selected in Section 4.3 of the upper
 ### paper.
@@ -580,8 +581,7 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### We only use the functions with 2 dimensions.
 ### We computed the precision values by hand and added this as a performance evaluation
 ###
-### The used performance measures are ERT with 0.001 and the precision value
-###
+### The used performance measures are ERT based on all precision values and the precision value
 # version_computation <- "_7"
 # name_plots <- "7"
 # load("bbob_ranking.Rdata")
@@ -640,6 +640,17 @@ plot_result <- function(names_columns, item_number, depth_value,
 
 ### Version 8
 ###
+### We use the data given by https://dl.p-value.net/2013-ecj_benchmarking/
+### corresponding to Mersmann, 0. etal (2015): Analyzing the BBOB results by
+### means of benchmarking concepts, Evolutionary Computaion
+###
+### The selected algorithms correspond to these selected in Section 4.3 of the upper
+### paper.
+###
+### We only use the functions with 2 dimensions.
+### We computed the precision values by hand and added this as a performance evaluation
+###
+### The used performance measures are ERT based on precision 0.001 and the precision value
 # version_computation <- "_8"
 # name_plots <- "8"
 # load("bbob_ranking.Rdata")
@@ -700,19 +711,19 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### Version 9
 ### using the evaluations by Table 2 of
 ### Frank Schneider, Lukas Balles & Philipp Hennig: (2019): DEEPOBS: A DEEP LEARNING OPTIMIZER BENCHMARK SUITE
-version_computation <- "_9"
-name_plots <- "9"
-version_computation <- "_9"
-data <- read.csv(file = "deepops_Schneideretal_data.csv",sep = ";", header = TRUE)
-data <- data[seq(1, 24), ]
-
-full_res <- data
-full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
-full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
-# as.numeric(as.character(full_res[seq(2, 24), 4]))
-colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
-
-funcId <- unique(full_res[, 1])
+# version_computation <- "_9"
+# name_plots <- "9"
+# version_computation <- "_9"
+# data <- read.csv(file = "deepops_Schneideretal_data.csv",sep = ";", header = TRUE)
+# data <- data[seq(1, 24), ]
+#
+# full_res <- data
+# full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
+# full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
+# # as.numeric(as.character(full_res[seq(2, 24), 4]))
+# colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
+#
+# funcId <- unique(full_res[, 1])
 
 
 
@@ -752,23 +763,20 @@ for (graph in list_graph) {
 
 
 ### Comments:
-# to Version 1: here we have no problems that two times only Inf vs Inf are compared
+# to Version 1: here we have no problem that two times only Inf vs Inf are compared
 #     thus, we do do not have the question how to include such an information
 #     And all comparisons are indeed a poset
 # to Version 2: for function id 18 and 24 we have the problematic how to deal with
 #     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; FULLNEWUOA)
 # to Version 3: like version 2 just without funcid 18 and 24
-# to Version 4: for function id 18 and 24 we have the problematic how to deal with
+# to Version 4: for function id 2, 5, 7, 13, 16, 17, 18, 23, 24 we have the problematic how to deal with
 #     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; FULLNEWUOA; IPOP-CMA-ES;
 #     G3PXC)
-# to Version 5:
-# to Version 6:
-# to Version 7: for function id 1, 18 and 24 we have the problematic how to deal with
-#     same performance measures values for both optimizers (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
-#     --> neither computatiion version 1 nor conputation version 2 worked
+# to Version 5: like version 4 just without funcid 2, 5, 7, 13, 16, 17, 18, 23, 24
+# to Version 6: --> neither computation version 1 nor computation version 2 worked
+# to Version 7: --> neither computation version 1 nor computation version 2 worked
 # to Version 8: for function id 1, 18 and 24 we have the problematic how to deal with
 #     the same performance measures values for both optimizers (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
-#     --> neither computatiion version 1 nor conputation version 2 worked
 # to Version 9: no problems :)
 ################################################################################
 #
