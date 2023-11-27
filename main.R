@@ -57,7 +57,7 @@ convert_to_matrix <- function(single_data_eval) {
     learner_base <- single_data_eval[opt_i, ]
     for (opt_j in seq(1, number_optimizer)[-opt_i]) {
       learner_comp <- single_data_eval[opt_j, ]
-      difference <- learner_base - learner_comp
+      difference <- as.numeric(learner_base) - as.numeric(learner_comp)
       difference <- difference[!is.na(difference)]
       if (length(difference) == 0) {
         print(paste0("Optimizer ", list_optimizer[opt_i], " and Optimizer ", list_optimizer[opt_j], " have both in all components Inf."))
@@ -218,7 +218,7 @@ plot_result <- function(names_columns, item_number, depth_value,
 
 
 ### Version 1
-### We use the ERT and FV obtained from https://iohanalyzer.liacs.nl/
+### We use the ERT and FV obtained from https://iohanalyzer.liacs.nl/ (accessed: 18.11.2023)
 # version_computation <- "_1"
 # name_plots <- "1"
 #
@@ -318,52 +318,52 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### Thus, setting these two to incomparable analogously as we define it, is not
 ### necessary meaningful. Thus, we drop these two functIds (that are 18 and 24)
 ### in the following and discuss the same analysis as above
-version_computation <- "_3"
-name_plots <- "3"
-
-load("bbob_ranking.Rdata")
-# View(data)
-
-# Step 1: filter those data needed
-unique(data$algorithm)
-optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
-                                  "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
-                                  "IPOP-CMA-ES", "G3PCX"))
-data_filter <- data %>% filter(algorithm %in% optimizer_interest)
-full_res <- data.frame(funcId = sort(rep(seq(1,24)[-c(18,24)], 11)),
-                       optimizer = rep(optimizer_interest, 22),
-                       ERT_2 = rep(FALSE, 11*22),
-                       ERT_3 = rep(FALSE, 11*22),
-                       ERT_5 = rep(FALSE, 11*22),
-                       ERT_10 = rep(FALSE, 11*22),
-                       ERT_20 = rep(FALSE, 11*22),
-                       ERT_40 = rep(FALSE, 11*22))
-
-for (func_index in unique(data_filter$funcId)[-c(18,24)]) {
-  for (dim_index in unique(data_filter$dimension)) {
-    for (algo_index in optimizer_interest) {
-      data_inner <- data_filter %>%
-        filter(dimension == dim_index) %>%
-        filter(funcId == func_index) %>%
-        filter(algorithm %in% algo_index)
-      precision <- max(unique(data_inner$precision))
-      data_inner <- data_inner %>% filter(precision == precision)
-      row_full_res <- intersect(which(full_res$optimizer == algo_index),
-                                which(full_res$funcId == func_index))
-      full_res[row_full_res, paste0("ERT_", dim_index)] <- data_inner[1, "ert"]
-    }
-  }
-}
-funcId <- as.factor(seq(1, 24)[-c(18,24)])
-
-# NA means that the optimizer did never reach the necessary precision, thus we set
-# them all to Inf (infinity)
-colSums(is.na(full_res))
-full_res[is.na(full_res)] <- Inf
-colSums(is.na(full_res))
-dim(full_res)
-unique(full_res[which(is.na(full_res$ERT_2)), ]$optimizer)
-unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
+# version_computation <- "_3"
+# name_plots <- "3"
+#
+# load("bbob_ranking.Rdata")
+# # View(data)
+#
+# # Step 1: filter those data needed
+# unique(data$algorithm)
+# optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
+#                                   "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
+#                                   "IPOP-CMA-ES", "G3PCX"))
+# data_filter <- data %>% filter(algorithm %in% optimizer_interest)
+# full_res <- data.frame(funcId = sort(rep(seq(1,24)[-c(18,24)], 11)),
+#                        optimizer = rep(optimizer_interest, 22),
+#                        ERT_2 = rep(FALSE, 11*22),
+#                        ERT_3 = rep(FALSE, 11*22),
+#                        ERT_5 = rep(FALSE, 11*22),
+#                        ERT_10 = rep(FALSE, 11*22),
+#                        ERT_20 = rep(FALSE, 11*22),
+#                        ERT_40 = rep(FALSE, 11*22))
+#
+# for (func_index in unique(data_filter$funcId)[-c(18,24)]) {
+#   for (dim_index in unique(data_filter$dimension)) {
+#     for (algo_index in optimizer_interest) {
+#       data_inner <- data_filter %>%
+#         filter(dimension == dim_index) %>%
+#         filter(funcId == func_index) %>%
+#         filter(algorithm %in% algo_index)
+#       precision <- max(unique(data_inner$precision))
+#       data_inner <- data_inner %>% filter(precision == precision)
+#       row_full_res <- intersect(which(full_res$optimizer == algo_index),
+#                                 which(full_res$funcId == func_index))
+#       full_res[row_full_res, paste0("ERT_", dim_index)] <- data_inner[1, "ert"]
+#     }
+#   }
+# }
+# funcId <- as.factor(seq(1, 24)[-c(18,24)])
+#
+# # NA means that the optimizer did never reach the necessary precision, thus we set
+# # them all to Inf (infinity)
+# colSums(is.na(full_res))
+# full_res[is.na(full_res)] <- Inf
+# colSums(is.na(full_res))
+# dim(full_res)
+# unique(full_res[which(is.na(full_res$ERT_2)), ]$optimizer)
+# unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
 
 
 
@@ -378,6 +378,7 @@ unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
 ### The idea is that for each function we use the ERT values of dimension 2 and 3
 ### as multiple performance criteria.
 # version_computation <- "_4"
+# name_plots <- "4"
 #
 # load("bbob_ranking.Rdata")
 # # View(data)
@@ -439,7 +440,7 @@ unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
 ### Looking at Version 4 we obtain that for two funcID there exist two optimizers where all ERT criteria
 ### equal Inf as they never reached the necessary
 ### Thus, setting these two to incomparable analogously as we define it, is not
-### necessary meaningful. Thus, we drop these two functIds (that are c(2, 5, 7, 13, 16, 17, 18, 23, 24))
+### necessary meaningful. Thus, we drop these functIds (that are c(2, 5, 7, 13, 16, 17, 18, 23, 24))
 ### in the following and discuss the same analysis as above
 # version_computation <- "_5"
 #
@@ -493,7 +494,17 @@ unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
 
 
 ### Version 6
+### We use the data given by https://dl.p-value.net/2013-ecj_benchmarking/
+### corresponding to Mersmann, 0. etal (2015): Analyzing the BBOB results by
+### means of benchmarking concepts, Evolutionary Compuation
 ###
+### The selected algorithms correspond to these selected in Section 4.3 of the upper
+### paper.
+###
+### We only use the functions with 2 dimensions.
+### We computed the precision values by hand and added this as a performance evaluation
+###
+### The used performance measures are all possible ERT values and the precision value
 # version_computation <- "_6"
 # name_plots <- "6"
 # load("bbob_ranking.Rdata")
@@ -558,6 +569,18 @@ unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
 
 
 ### Version 7
+###
+### We use the data given by https://dl.p-value.net/2013-ecj_benchmarking/
+### corresponding to Mersmann, 0. etal (2015): Analyzing the BBOB results by
+### means of benchmarking concepts, Evolutionary Compuation
+###
+### The selected algorithms correspond to these selected in Section 4.3 of the upper
+### paper.
+###
+### We only use the functions with 2 dimensions.
+### We computed the precision values by hand and added this as a performance evaluation
+###
+### The used performance measures are ERT with 0.001 and the precision value
 ###
 # version_computation <- "_7"
 # name_plots <- "7"
@@ -674,6 +697,25 @@ unique(full_res[which(is.na(full_res$ERT_5)), ]$optimizer)
 # funcId <- as.factor(seq(1, 24))
 
 
+### Version 9
+### using the evaluations by Table 2 of
+### Frank Schneider, Lukas Balles & Philipp Hennig: (2019): DEEPOBS: A DEEP LEARNING OPTIMIZER BENCHMARK SUITE
+version_computation <- "_9"
+name_plots <- "9"
+version_computation <- "_9"
+data <- read.csv(file = "deepops_Schneideretal_data.csv",sep = ";", header = TRUE)
+data <- data[seq(1, 24), ]
+
+full_res <- data
+full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
+full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
+# as.numeric(as.character(full_res[seq(2, 24), 4]))
+colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
+
+funcId <- unique(full_res[, 1])
+
+
+
 
 
 
@@ -716,15 +758,18 @@ for (graph in list_graph) {
 # to Version 2: for function id 18 and 24 we have the problematic how to deal with
 #     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; FULLNEWUOA)
 # to Version 3: like version 2 just without funcid 18 and 24
-# to Version 4:
+# to Version 4: for function id 18 and 24 we have the problematic how to deal with
+#     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; FULLNEWUOA; IPOP-CMA-ES;
+#     G3PXC)
 # to Version 5:
 # to Version 6:
 # to Version 7: for function id 1, 18 and 24 we have the problematic how to deal with
-#     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
+#     same performance measures values for both optimizers (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
 #     --> neither computatiion version 1 nor conputation version 2 worked
 # to Version 8: for function id 1, 18 and 24 we have the problematic how to deal with
-#     Inf compared to Inf (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
+#     the same performance measures values for both optimizers (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
 #     --> neither computatiion version 1 nor conputation version 2 worked
+# to Version 9: no problems :)
 ################################################################################
 #
 # PART 1: FIRST IMPRESSION
@@ -786,16 +831,13 @@ dev.off()
 # PART 2: Computation and Evaluation UFG Depth
 #
 ################################################################################
-################################################################################
-# version 1
-################################################################################
 
 item_number <- dim(list_graph[[1]])[1]
 
 start_time <- Sys.time()
 depth_premises <- ddandrda::compute_ufg_depth_porder(list_graph,
                                                      print_progress_text = TRUE, # if progress should not be shown, set to FALSE
-                                                     save_ufg_premises = FALSE) # sonst evtl zu viele und dann braucht es lange zum abspeichern...
+                                                     save_ufg_premises = FALSE) # eventuelly to many -> thus not saved
 total_time <- Sys.time() - start_time
 total_time
 
@@ -812,6 +854,8 @@ plot_result(names_columns =  optimizer_interest,
 
 
 
+
+###### DAS UNTEN LÖSCHEN!!!!! ##################################################
 
 ################################################################################
 # version 2
