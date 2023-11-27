@@ -1,0 +1,6 @@
+[1] "The minimal value is 0.105724826615566"
+[1] "The maximal value is 0.184968164927482"
+[1] "The mean value is 0.122368239723234"
+[1] "The standard deviation is 0.0238129737051555"
+[1] "The median is 0.111646986837299"
+[1] "The number of depth value duplicates (reduced by duplicates given by the data) are 0"
