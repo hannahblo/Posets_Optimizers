@@ -11,4 +11,5 @@ wuetal_data = wuetal_data %>% mutate(MIGD = trimws(str_replace(MIGD, "\\(.*?\\)"
 wuetal_data = wuetal_data %>% mutate(MHVD = trimws(str_replace(MHVD, "\\(.*?\\)", "")))
 wuetal_data
 
-save(wuetal_data, file = "DMOP_Wuetal_data_no_std_err.csv")
+write.csv(wuetal_data, file = "DMOP_Wuetal_data_no_std_err.csv")
+?save
