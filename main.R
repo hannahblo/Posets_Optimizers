@@ -711,19 +711,25 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### Version 9
 ### using the evaluations by Table 2 of
 ### Frank Schneider, Lukas Balles & Philipp Hennig: (2019): DEEPOBS: A DEEP LEARNING OPTIMIZER BENCHMARK SUITE
-# version_computation <- "_9"
-# name_plots <- "9"
-# version_computation <- "_9"
-# data <- read.csv(file = "deepops_Schneideretal_data.csv",sep = ";", header = TRUE)
-# data <- data[seq(1, 24), ]
-#
-# full_res <- data
-# full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
-# full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
-# # as.numeric(as.character(full_res[seq(2, 24), 4]))
-# colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
-#
-# funcId <- unique(full_res[, 1])
+version_computation <- "_9"
+name_plots <- "9"
+version_computation <- "_9"
+data <- read.csv(file = "deepops_Schneideretal_data.csv",sep = ";", header = TRUE)
+data <- data[seq(1, 24), ]
+
+full_res <- data
+full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
+full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
+# as.numeric(as.character(full_res[seq(2, 24), 4]))
+
+# the measure speed: the smaller the better
+# the measure loss: the smaller the better
+# the measure accuracy: the larger the better --> 1 - accuracy again, the smaller the better
+# for P3, P4, P6, P7, P8 the accuracy
+full_res[c(seq(7, 12), seq(16,24)), 3] <- 1- as.numeric(full_res[c(seq(7, 12), seq(16,24)), 3])
+colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
+
+funcId <- unique(full_res[, 1])
 
 
 
