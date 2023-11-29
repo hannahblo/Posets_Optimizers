@@ -735,23 +735,41 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### Version 10
 ### using the evaluations by Table 2 and Figure 2(for the order of the losses which are not given by the tables) of
 ### Frank Schneider, Lukas Balles & Philipp Hennig: (2019): DEEPOBS: A DEEP LEARNING OPTIMIZER BENCHMARK SUITE
+# version_computation <- "_10"
+# name_plots <- "10"
+# data <- read.csv(file = "deepops_Schneideretal_data_test_loss.csv",sep = ";", header = TRUE)
+# data <- data[seq(1, 24), ]
+#
+# full_res <- data
+# full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
+# full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
+# # as.numeric(as.character(full_res[seq(2, 24), 4]))
+#
+# # the measure speed: the smaller the better
+# # the measure loss: the smaller the better
+# colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
+#
+# funcId <- unique(full_res[, 1])
 
-version_computation <- "_10"
-name_plots <- "10"
-data <- read.csv(file = "deepops_Schneideretal_data_test_loss.csv",sep = ";", header = TRUE)
-data <- data[seq(1, 24), ]
+
+
+
+### Version 11
+### using the data given by https://www.nature.com/articles/s41598-023-41855-2
+### Wu, F., Wang, W., Chen, J. et al. A dynamic multi-objective optimization method based on classification strategies. Sci Rep 13, 15221 (2023). https://doi.org/10.1038/s41598-023-41855-2
+### using Table 2 and Table 3
+version_computation <- "_11"
+name_plots <- "11"
+data <- read.csv(file = "DMOP_Wuetal_data_no_std_err.csv",sep = ",", header = TRUE)
+data <- data[, seq(2,5)]
 
 full_res <- data
 full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
 full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
-# as.numeric(as.character(full_res[seq(2, 24), 4]))
+full_res[seq(48, 86), ]
 
-# the measure speed: the smaller the better
-# the measure loss: the smaller the better
 colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
-
 funcId <- unique(full_res[, 1])
-
 
 
 
@@ -803,6 +821,8 @@ for (graph in list_graph) {
 # to Version 8: for function id 1, 18 and 24 we have the problematic how to deal with
 #     the same performance measures values for both optimizers (for optimizers BFGS, RANDOMSEARCH; IPOP-CMA-ES; G3PCX; FULLNEWUOA)
 # to Version 9: no problems :)
+# to Version 10: no problems :)
+# to Version 11: no problems :)
 ################################################################################
 #
 # PART 1: FIRST IMPRESSION
@@ -824,6 +844,7 @@ duplicated(list_graph) # no duplications exist
 
 pdf(paste0(name_plots, "_all_observed.pdf"), onefile = TRUE)
 for (i in 1:length(list_graph)) {
+  print(i)
   mat <- matrix(as.logical(list_graph[[i]]), ncol = number_optimizer)
   colnames(mat) <- rownames(mat) <- colnames(list_graph[[i]])
   hasse(t(mat), parameters = list(arrow = "backward", shape = "roundrect"))
