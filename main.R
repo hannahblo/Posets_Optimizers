@@ -766,7 +766,7 @@ data <- data[, seq(2,5)]
 full_res <- data
 full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
 full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
-full_res[seq(48, 86), ]
+# full_res[seq(48, 86), ]
 
 colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
 funcId <- unique(full_res[, 1])
@@ -844,7 +844,7 @@ duplicated(list_graph) # no duplications exist
 
 pdf(paste0(name_plots, "_all_observed.pdf"), onefile = TRUE)
 for (i in 1:length(list_graph)) {
-  print(i)
+  # print(i)
   mat <- matrix(as.logical(list_graph[[i]]), ncol = number_optimizer)
   colnames(mat) <- rownames(mat) <- colnames(list_graph[[i]])
   hasse(t(mat), parameters = list(arrow = "backward", shape = "roundrect"))
