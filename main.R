@@ -189,6 +189,20 @@ plot_result <- function(names_columns, item_number, depth_value,
   }
   dev.off()
 
+  ## Nonedges (high to low)
+  max_depth_index <- sort(depth_value, index.return = TRUE, decreasing = TRUE)$ix
+  sink(file = paste0(file_name_add, "_matrix_nonedges_intersect_from_highest_to_lowest.txt")) # hasse diagrams cannot be plotted -> not necessarily antisymmetric
+  for (i in 1:max_plot_number) {
+    intersect <- matrix(rep(TRUE, item_number * item_number), ncol = item_number)
+    for (j in seq(1, i)) {
+      intersect <- intersect & matrix(!as.logical(list_mat_porders_ml[[max_depth_index[j]]]), ncol = item_number)
+    }
+    colnames(intersect) <- rownames(intersect) <- names_columns
+    print(paste0("\n . \n .\n The ", i, " deepest depth values have these nonedges in common."))
+    print(intersect)
+    # hasse(t(intersect), parameters = list(arrow = "backward", shape = "roundrect"))
+  }
+  sink(file = NULL)
 
 
   ## Intersections (low to high)
@@ -708,6 +722,82 @@ plot_result <- function(names_columns, item_number, depth_value,
 # funcId <- as.factor(seq(1, 24))
 
 
+
+### Version 8b!!!!!!!
+###
+### We use the data given by https://dl.p-value.net/2013-ecj_benchmarking/
+### corresponding to Mersmann, 0. etal (2015): Analyzing the BBOB results by
+### means of benchmarking concepts, Evolutionary Computaion
+###
+### The selected algorithms correspond to these selected in Section 4.3 of the upper
+### paper.
+###
+### We only use the functions with 2 dimensions. Due to the comments (see below)
+### on the problems with comparing same values, we reduce the computation by
+### functionid 1,18,24
+### We computed the precision values by hand and added this as a performance evaluation
+###
+### The used performance measures are ERT based on precision 0.001 and the precision value
+# version_computation <- "_8b"
+# name_plots <- "8b"
+# load("bbob_ranking.Rdata")
+# unique(data$algorithm)
+# unique(data$dimension)
+# optimizer_interest <- as.factor(c("BFGS", "(1+2_m^s) CMA-ES", "BIPOP-CMA-ES", "MOS", "PSO",
+#                                   "RANDOMSEARCH", "FULLNEWUOA", "Nelder-Doerr", "iAMALGAM",
+#                                   "IPOP-CMA-ES", "G3PCX"))
+# data_filter <- data %>% filter(algorithm %in% optimizer_interest)
+# full_res <- data.frame(funcId = sort(rep(seq(1,24), 11)),
+#                        optimizer = rep(optimizer_interest, 24)
+# )
+# for (func_index in unique(data_filter$funcId)[-c(1, 18,24)]) {
+#   for (prec_index in unique(data_filter$precision)) {
+#     for (algo_index in optimizer_interest) {
+#       data_inner <- data_filter %>%
+#         filter(precision == prec_index) %>%
+#         filter(funcId == func_index) %>%
+#         filter(algorithm %in% algo_index)
+#       smallest_dimension <- 2 #min(unique(data_inner$dimension))
+#       data_inner <- data_inner %>% filter(dimension == smallest_dimension)
+#       row_full_res <- intersect(which(full_res$optimizer == algo_index),
+#                                 which(full_res$funcId == func_index))
+#       full_res[row_full_res, paste0("ERT_", prec_index)] <- data_inner[1, "ert"]
+#     }
+#   }
+# }
+#
+# View(full_res)
+# colSums(is.na(full_res))
+# dim(full_res)
+#
+# full_res <- full_res %>% filter(optimizer %in% optimizer_interest)
+#
+# # begin edit for function value
+# # compute best function value for given time (5000)
+# # lowest precision that an algo has achieved at time 5000
+# # ERTs higher than 1000 time units
+# full_res_sub <- full_res[,-c(1,2)]
+# full_res_higher <- apply(full_res_sub, 2,  function(x) x < 5000)
+# full_res_fv_bin <- cbind(full_res[,c(1,2)], full_res_higher)
+# # replace NAs (~infinite runtime) by False
+# full_res_fv_bin[is.na(full_res_fv_bin) == TRUE] <- FALSE
+# # now count precision (function values) for which ERT < 5000
+# function_value = apply(full_res_fv_bin[,-c(1,2)], 1, sum)
+# # and append to full_res data frame
+# full_res$function_value = function_value
+#
+# colSums(is.na(full_res))
+# full_res[is.na(full_res)] <- Inf
+# colSums(is.na(full_res))
+#
+# full_res <- full_res[, -seq(4,8)]
+#
+# funcId <- as.factor(seq(1, 24)[-c(1, 18,24)])
+
+
+
+
+
 ### Version 9
 ### using the evaluations by Table 2 of
 ### Frank Schneider, Lukas Balles & Philipp Hennig: (2019): DEEPOBS: A DEEP LEARNING OPTIMIZER BENCHMARK SUITE
@@ -758,18 +848,18 @@ plot_result <- function(names_columns, item_number, depth_value,
 ### using the data given by https://www.nature.com/articles/s41598-023-41855-2
 ### Wu, F., Wang, W., Chen, J. et al. A dynamic multi-objective optimization method based on classification strategies. Sci Rep 13, 15221 (2023). https://doi.org/10.1038/s41598-023-41855-2
 ### using Table 2 and Table 3
-version_computation <- "_11"
-name_plots <- "11"
-data <- read.csv(file = "DMOP_Wuetal_data_no_std_err.csv",sep = ",", header = TRUE)
-data <- data[, seq(2,5)]
-
-full_res <- data
-full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
-full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
-# full_res[seq(48, 86), ]
-
-colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
-funcId <- unique(full_res[, 1])
+# version_computation <- "_11"
+# name_plots <- "11"
+# data <- read.csv(file = "DMOP_Wuetal_data_no_std_err.csv",sep = ",", header = TRUE)
+# data <- data[, seq(2,5)]
+#
+# full_res <- data
+# full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
+# full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
+# # full_res[seq(48, 86), ]
+#
+# colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
+# funcId <- unique(full_res[, 1])
 
 
 
