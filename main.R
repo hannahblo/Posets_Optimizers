@@ -22,7 +22,7 @@ library(ddandrda)
 # install.packages("gurobi")
 # install.packages("devtools")
 # devtools::install_github("schollmeyer/oofos")
-library(oofos)
+#library(oofos)
 
 ### All the other R-packages are on CRAN packages (06.10.2023)
 library(reshape)
@@ -857,10 +857,30 @@ plot_result <- function(names_columns, item_number, depth_value,
 # full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
 # full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
 # # full_res[seq(48, 86), ]
-#
+# 
 # colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
 # funcId <- unique(full_res[, 1])
 
+
+### Version 12
+### using the data given by https://www.nature.com/articles/s41598-023-41855-2
+### Wu, F., Wang, W., Chen, J. et al. A dynamic multi-objective optimization method based on classification strategies. Sci Rep 13, 15221 (2023). https://doi.org/10.1038/s41598-023-41855-2
+### using Table 2 and Table 3
+version_computation <- "_12"
+name_plots <- "12"
+data <- read.csv(file = "3_stages_DMOP_Wuetal_data_no_std_err.csv", sep = ",", header = TRUE)
+data <- data[, seq(2,7)]
+
+full_res <- data
+full_res[seq(1, 24), 3] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 3]))
+full_res[seq(1, 24), 4] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 4]))
+full_res[seq(1, 24), 5] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 5]))
+full_res[seq(1, 24), 6] <- as.numeric(gsub(",", ".",full_res[seq(1, 24), 6]))
+
+# full_res[seq(48, 86), ]
+
+colnames(full_res)[c(1, 2)] <- c("funcId", "optimizer")
+funcId <- unique(full_res[, 1])
 
 
 
@@ -1000,95 +1020,95 @@ plot_result(names_columns =  optimizer_interest,
 
 
 ###### DAS UNTEN LÖSCHEN!!!!! ##################################################
-
-################################################################################
-# version 2
-################################################################################
-#
-# ### Compute the VC dimension
-# # Formal context given by the partial orders in list_mat
-fc_ml_porder <- ddandrda::compute_conceptual_scaling(input_porder = list_graph)
-# ml_porder_model <- oofos::compute_extent_vc_dimension(fc_ml_porder)
-# vc_fc_ml_porder <- gurobi::gurobi(ml_porder_model)
-# vc <- vc_fc_ml_porder$objval # 8
-
-
-
-### Compute the ufg-depth
-# Preparation of the computation, needed as input of
-porder_all <- ddandrda::compute_all_partial_orders(item_number, list = FALSE, complemented = TRUE)
-list_porder_all <- ddandrda::compute_all_partial_orders(item_number, list = TRUE, complemented = FALSE)
-
-data_context <- get_weighted_representation(fc_ml_porder) # duplication
-n_row_context <- nrow(data_context$x_weighted)
-count_dup <- data_context$counts
-number_obs <- sum(data_context$counts)
-
-list_ml_porder_unique <- ddandrda::convert_context_to_list(data_context$x_weighted[ ,(1:item_number * item_number)],  complemented = FALSE)
-
-whole_context <- rbind(data_context$x_weighted, porder_all) # context of all posets
-index <- which(!duplicated(whole_context))
-whole_context <- whole_context[index,]
-
-
-
-# Computation of S, see article (1)
-start_time <- Sys.time()
-ufg_premises <- oofos::enumerate_ufg_premises(whole_context, n_row_context) # das ist seltsam
-total_time <- Sys.time() - start_time
-
-# saveRDS(total_time, "total_time.rds")
-# saveRDS(ufg_premises, "ufg_premises.rds")
-# length(ufg_premises)
-
-
-# ufg depth computation
-emp_prob <- count_dup / number_obs
-depth_ufg <- rep(0, length(list_ml_porder_unique))
-constant_c <- 0
-
-for (i in 1:length(ufg_premises)) {
-  # print(paste0("Iteration ", i,  " of ", dim(ufg_premises)[1]))
-  index_premise <- ufg_premises[[i]]
-  if (length(index_premise) < 2) {
-    print(paste0("cardinaltiy ufg_premise is ", length(index_premise)))
-  }
-
-  prod_emp_ufg <- prod(emp_prob[index_premise])
-  concl_ufg <- test_porder_in_concl(list_ml_porder_unique[index_premise], list_ml_porder_unique) * 1
-
-  depth_ufg <- depth_ufg + concl_ufg * prod_emp_ufg
-  constant_c <- constant_c + prod_emp_ufg
-}
-
-depth_value <- depth_ufg / constant_c
-
-
-# Adding duplicate values
-depth_value_all <- c()
-list_data_all <- vector("list", sum(count_dup))
-saving <- 1
-for (i in 1:length(depth_value)) {
-  for (j in 1:count_dup[i]) {
-    list_data_all[[saving]] <- list_ml_porder_unique[[i]]
-    saving <- saving + 1
-  }
-  depth_value_all <- append(depth_value_all, rep(depth_value[i], count_dup[i]))
-
-}
-
-
-# saveRDS(constant_c, "constant_c.rds")
-# saveRDS(depth_ufg, "ufg_depth.rds")
-# saveRDS(vc, "vc.rds")
-# saveRDS(depth_value_all, "depth_values.rds")
-
-
-###########
-prep_ufg_premises <- prepare_ufg_premises(list_graph, number_items = number_classifiers)
-start_time <- Sys.time()
-ufg_premises <- oofos::enumerate_ufg_premises(prep_ufg_premises$whole_context, prep_ufg_premises$n_row_context)
-total_time <- Sys.time() - start_time
-depth_value <- compute_ufg_exist_premises(poset_interest = prep_ufg_premises$list_porder_premises,
-                                          ufg_premises,
-                                          prep_ufg_premises)
+# 
+# ################################################################################
+# # version 2
+# ################################################################################
+# #
+# # ### Compute the VC dimension
+# # # Formal context given by the partial orders in list_mat
+# fc_ml_porder <- ddandrda::compute_conceptual_scaling(input_porder = list_graph)
+# # ml_porder_model <- oofos::compute_extent_vc_dimension(fc_ml_porder)
+# # vc_fc_ml_porder <- gurobi::gurobi(ml_porder_model)
+# # vc <- vc_fc_ml_porder$objval # 8
+# 
+# 
+# 
+# ### Compute the ufg-depth
+# # Preparation of the computation, needed as input of
+# porder_all <- ddandrda::compute_all_partial_orders(item_number, list = FALSE, complemented = TRUE)
+# list_porder_all <- ddandrda::compute_all_partial_orders(item_number, list = TRUE, complemented = FALSE)
+# 
+# data_context <- get_weighted_representation(fc_ml_porder) # duplication
+# n_row_context <- nrow(data_context$x_weighted)
+# count_dup <- data_context$counts
+# number_obs <- sum(data_context$counts)
+# 
+# list_ml_porder_unique <- ddandrda::convert_context_to_list(data_context$x_weighted[ ,(1:item_number * item_number)],  complemented = FALSE)
+# 
+# whole_context <- rbind(data_context$x_weighted, porder_all) # context of all posets
+# index <- which(!duplicated(whole_context))
+# whole_context <- whole_context[index,]
+# 
+# 
+# 
+# # Computation of S, see article (1)
+# start_time <- Sys.time()
+# ufg_premises <- oofos::enumerate_ufg_premises(whole_context, n_row_context) # das ist seltsam
+# total_time <- Sys.time() - start_time
+# 
+# # saveRDS(total_time, "total_time.rds")
+# # saveRDS(ufg_premises, "ufg_premises.rds")
+# # length(ufg_premises)
+# 
+# 
+# # ufg depth computation
+# emp_prob <- count_dup / number_obs
+# depth_ufg <- rep(0, length(list_ml_porder_unique))
+# constant_c <- 0
+# 
+# for (i in 1:length(ufg_premises)) {
+#   # print(paste0("Iteration ", i,  " of ", dim(ufg_premises)[1]))
+#   index_premise <- ufg_premises[[i]]
+#   if (length(index_premise) < 2) {
+#     print(paste0("cardinaltiy ufg_premise is ", length(index_premise)))
+#   }
+# 
+#   prod_emp_ufg <- prod(emp_prob[index_premise])
+#   concl_ufg <- test_porder_in_concl(list_ml_porder_unique[index_premise], list_ml_porder_unique) * 1
+# 
+#   depth_ufg <- depth_ufg + concl_ufg * prod_emp_ufg
+#   constant_c <- constant_c + prod_emp_ufg
+# }
+# 
+# depth_value <- depth_ufg / constant_c
+# 
+# 
+# # Adding duplicate values
+# depth_value_all <- c()
+# list_data_all <- vector("list", sum(count_dup))
+# saving <- 1
+# for (i in 1:length(depth_value)) {
+#   for (j in 1:count_dup[i]) {
+#     list_data_all[[saving]] <- list_ml_porder_unique[[i]]
+#     saving <- saving + 1
+#   }
+#   depth_value_all <- append(depth_value_all, rep(depth_value[i], count_dup[i]))
+# 
+# }
+# 
+# 
+# # saveRDS(constant_c, "constant_c.rds")
+# # saveRDS(depth_ufg, "ufg_depth.rds")
+# # saveRDS(vc, "vc.rds")
+# # saveRDS(depth_value_all, "depth_values.rds")
+# 
+# 
+# ###########
+# prep_ufg_premises <- prepare_ufg_premises(list_graph, number_items = number_classifiers)
+# start_time <- Sys.time()
+# ufg_premises <- oofos::enumerate_ufg_premises(prep_ufg_premises$whole_context, prep_ufg_premises$n_row_context)
+# total_time <- Sys.time() - start_time
+# depth_value <- compute_ufg_exist_premises(poset_interest = prep_ufg_premises$list_porder_premises,
+#                                           ufg_premises,
+#                                           prep_ufg_premises)
