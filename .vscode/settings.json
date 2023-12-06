@@ -1,0 +1,24 @@
+{
+    "grammarly.selectors": [
+        {
+            "language": "latex",
+            "scheme": "untitled",
+            "pattern": "Untitled-1"
+        },
+        {
+            "language": "latex",
+            "scheme": "untitled",
+            "pattern": "Untitled-1"
+        },
+        {
+            "language": "latex",
+            "scheme": "untitled",
+            "pattern": "Untitled-1"
+        },
+        {
+            "language": "latex",
+            "scheme": "untitled",
+            "pattern": "Untitled-1"
+        }
+    ]
+}
