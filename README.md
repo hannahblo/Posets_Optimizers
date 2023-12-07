@@ -1,4 +1,4 @@
-# Partially Ranking of Optimizers
+# Partial Rankings of Optimizers - Corresponding R Code
 
 ## Introduction
 This anonymous repository contains R-code and data sets corresponding to the "Robust Statistical Comparison of Random Variables with Locally Varying Scale of Measurement" article. We apply the introduced tests on three examples: BBOB suite, DeepOPS suite, and a benchmarking suite on multi-objective evolutionary algorithms.
