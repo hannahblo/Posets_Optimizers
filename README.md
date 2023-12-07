@@ -44,7 +44,8 @@ The resulting files are as follows (note that the first page of the file is ofte
 - ..._total_time_depth_premises.rds: stores the calculation time of the ufg depth values.
 
 ## Literatur:
-- O. Mersmann, M. Preuss, H. Trautmann, B. Bischl, and C. Weihs. Analyzing the bbob results by means of benchmarking concepts. Evolutionary Computation, 23(1):161–185, 2015.
--  Schneider, L Balles, and P Hennig. Deepobs: A deep learning optimizer benchmark suite. In International Conference on Learning Representations (ICLR 2019). Amerst, MA, 2019
--  Hansen et al 2010
--  Wu etal 2023
+- Olaf Mersmann, Mike Preuss, Heike Trautmann, Bernd Bischl, and Claus Weihs. Analyzing the BBOB results by means of benchmarking concepts. Evolutionary Computation, 23(1):161–185, 2015.
+- Frank Schneider, Lukas Balles, and Philipp Hennig. Deepobs: A deep learning optimizer benchmark suite. In International Conference on Learning Representations (ICLR), 2019.
+- Nikolaus Hansen, Anne Auger, Raymond Ros, Steffen Finck, and Petr Poˇs ́ık. Comparing results of 31 algorithms from the black-box optimization benchmarking bbob-2009. In Proceedings of the 12th annual conference companion on Genetic and evolutionary computation, pp. 1689–1696, 2010.
+- Fei Wu, Wanliang Wang, Jiacheng Chen, and Zheng Wang. A dynamic multi-objective optimization method based on classification strategies. Scientific Reports, 13(1):15221, 2023.
+
