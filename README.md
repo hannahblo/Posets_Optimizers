@@ -29,6 +29,7 @@ Running the code results in some automatically generated pdf/tex/jpeg files. The
 - MOEA (Multi-Objective Evolutionary Algoritms)
 - BBOB_dim_2 (analysis restricted to test functions with dimension 2)
 - BBOB_dim_all (analysis on all dimensions of the test functions)
+
 The resulting files are as follows (note that the first page of the file is often blank)
 - ..._all_observed.pdf: plots all observed performance orders
 - ..._heatmap.jpg: counts how often optimizer i is above optimizer j in all observations
