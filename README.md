@@ -26,9 +26,10 @@ Finally, run main.R.
 ## Explanation of all the produced plots
 Running the code results in some automatically generated pdf/tex/jpeg files. They all start with an initial that indicates which calculation they belong to:
 - DeepOPS
-- MOEA (Multi-Objective Evolutionary Algoritms)
-- BBOB_dim_2 (analysis restricted to test functions with dimension 2)
-- BBOB_dim_all (analysis on all dimensions of the test functions)
+- MOEA (Multi-Objective Evolutionary Algoritms).
+- BBOB_dim_2 (analysis restricted to test functions with dimension 2).
+- BBOB_dim_all (analysis on all dimensions of the test functions).
+
 
 The resulting files are as follows (note that the first page of the file is often blank)
 - ..._all_observed.pdf: plots all observed performance orders
