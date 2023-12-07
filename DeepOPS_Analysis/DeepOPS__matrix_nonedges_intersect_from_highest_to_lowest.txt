@@ -1,0 +1,40 @@
+[1] "\n . \n .\n The 1 deepest depth values have these nonedges in common."
+           SGD Momentum  Adam
+SGD      FALSE     TRUE FALSE
+Momentum FALSE    FALSE FALSE
+Adam      TRUE     TRUE FALSE
+[1] "\n . \n .\n The 2 deepest depth values have these nonedges in common."
+           SGD Momentum  Adam
+SGD      FALSE     TRUE FALSE
+Momentum FALSE    FALSE FALSE
+Adam      TRUE     TRUE FALSE
+[1] "\n . \n .\n The 3 deepest depth values have these nonedges in common."
+           SGD Momentum  Adam
+SGD      FALSE     TRUE FALSE
+Momentum FALSE    FALSE FALSE
+Adam      TRUE     TRUE FALSE
+[1] "\n . \n .\n The 4 deepest depth values have these nonedges in common."
+           SGD Momentum  Adam
+SGD      FALSE     TRUE FALSE
+Momentum FALSE    FALSE FALSE
+Adam      TRUE     TRUE FALSE
+[1] "\n . \n .\n The 5 deepest depth values have these nonedges in common."
+           SGD Momentum  Adam
+SGD      FALSE    FALSE FALSE
+Momentum FALSE    FALSE FALSE
+Adam      TRUE     TRUE FALSE
+[1] "\n . \n .\n The 6 deepest depth values have these nonedges in common."
+           SGD Momentum  Adam
+SGD      FALSE    FALSE FALSE
+Momentum FALSE    FALSE FALSE
+Adam      TRUE     TRUE FALSE
+[1] "\n . \n .\n The 7 deepest depth values have these nonedges in common."
+           SGD Momentum  Adam
+SGD      FALSE    FALSE FALSE
+Momentum FALSE    FALSE FALSE
+Adam      TRUE    FALSE FALSE
+[1] "\n . \n .\n The 8 deepest depth values have these nonedges in common."
+           SGD Momentum  Adam
+SGD      FALSE    FALSE FALSE
+Momentum FALSE    FALSE FALSE
+Adam     FALSE    FALSE FALSE
