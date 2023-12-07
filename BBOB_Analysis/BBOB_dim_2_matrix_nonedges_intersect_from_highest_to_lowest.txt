@@ -1,0 +1,273 @@
+[1] "\n . \n .\n The 1 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE    FALSE        TRUE  TRUE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr      TRUE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE    FALSE        TRUE  TRUE
+IPOP-CMA-ES      FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 2 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE    FALSE        TRUE  TRUE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr      TRUE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE    FALSE        TRUE  TRUE
+IPOP-CMA-ES      FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 3 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE    FALSE        TRUE  TRUE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr      TRUE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE             TRUE         TRUE  TRUE  TRUE         TRUE       TRUE        FALSE    FALSE        TRUE  TRUE
+IPOP-CMA-ES      FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 4 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr      TRUE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+IPOP-CMA-ES      FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 5 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+IPOP-CMA-ES      FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 6 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+IPOP-CMA-ES      FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 7 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+IPOP-CMA-ES      FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 8 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 9 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE  TRUE FALSE        FALSE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE             TRUE         TRUE  TRUE FALSE         TRUE       TRUE         TRUE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE       TRUE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 10 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE  TRUE FALSE        FALSE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE            FALSE         TRUE  TRUE FALSE         TRUE       TRUE        FALSE     TRUE        TRUE  TRUE
+RANDOMSEARCH      TRUE             TRUE         TRUE  TRUE FALSE        FALSE      FALSE         TRUE     TRUE        TRUE  TRUE
+FULLNEWUOA       FALSE            FALSE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE  TRUE  TRUE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE  TRUE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 11 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE  TRUE FALSE        FALSE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE            FALSE         TRUE  TRUE FALSE         TRUE       TRUE        FALSE     TRUE        TRUE  TRUE
+RANDOMSEARCH     FALSE             TRUE         TRUE  TRUE FALSE        FALSE      FALSE         TRUE    FALSE        TRUE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE FALSE FALSE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 12 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE  TRUE FALSE        FALSE      FALSE        FALSE     TRUE        TRUE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE         TRUE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE            FALSE         TRUE  TRUE FALSE         TRUE       TRUE        FALSE     TRUE        TRUE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE  TRUE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE FALSE FALSE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 13 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE FALSE FALSE        FALSE      FALSE        FALSE     TRUE       FALSE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO               TRUE            FALSE         TRUE FALSE FALSE         TRUE       TRUE        FALSE     TRUE        TRUE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE FALSE FALSE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 14 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO              FALSE            FALSE         TRUE FALSE FALSE         TRUE       TRUE        FALSE    FALSE        TRUE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE FALSE FALSE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 15 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO              FALSE            FALSE         TRUE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+Nelder-Doerr     FALSE             TRUE         TRUE FALSE FALSE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 16 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO              FALSE            FALSE         TRUE FALSE FALSE         TRUE      FALSE        FALSE    FALSE        TRUE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+Nelder-Doerr     FALSE             TRUE         TRUE FALSE FALSE         TRUE      FALSE        FALSE     TRUE        TRUE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 17 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE         TRUE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO              FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+Nelder-Doerr     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 18 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO              FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+Nelder-Doerr     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 19 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE  TRUE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO              FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+Nelder-Doerr     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 20 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE FALSE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO              FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+Nelder-Doerr     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE  TRUE
+iAMALGAM         FALSE            FALSE        FALSE FALSE  TRUE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+[1] "\n . \n .\n The 21 deepest depth values have these nonedges in common."
+                  BFGS (1+2_m^s) CMA-ES BIPOP-CMA-ES   MOS   PSO RANDOMSEARCH FULLNEWUOA Nelder-Doerr iAMALGAM IPOP-CMA-ES G3PCX
+BFGS             FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE FALSE
+(1+2_m^s) CMA-ES FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+BIPOP-CMA-ES     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE FALSE
+MOS              FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+PSO              FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+RANDOMSEARCH     FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE         TRUE    FALSE       FALSE FALSE
+FULLNEWUOA       FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+Nelder-Doerr     FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
+iAMALGAM         FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE FALSE
+IPOP-CMA-ES      FALSE            FALSE        FALSE FALSE FALSE        FALSE      FALSE        FALSE    FALSE       FALSE FALSE
+G3PCX            FALSE            FALSE        FALSE FALSE FALSE         TRUE      FALSE        FALSE    FALSE       FALSE FALSE
