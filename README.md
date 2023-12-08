@@ -5,11 +5,11 @@ This anonymous repository contains R-code and data sets corresponding to the "Pa
 
 The structure of the repository is as follows:
 - File _setup_session.R installs all needed R-packages.
-- Folder DeepOPS_Analysis contains the files to evaluate the DeepOPS benchmarking suite, see Schneider et.al. (2019).
+- Folder DeepOBS_Analysis contains the files to evaluate the DeepOBS benchmarking suite, see Schneider et.al. (2019).
 - Folder BBOB_Analysis contains the files to evaluate the BBOB suite, see Mersmann et.al. (2015) and Hansen et.al. (2010).
 - Folder Multi_Objective_Evolutionary_Algorithms_Analysis contains the files to evaluate the benchmarking suite corresponding to Wu et.al. (2023).
 
-The computation has been tested on Linux Ubuntu 20.04.5 with R version 2.2.4.
+The computation has been tested on Linux Ubuntu 20.04.5 with R version 4.2.2 and Linux Debian 18 with R version 4.3.
 
 ## Setup
 First, install all necessary R packages by downloading and sourcing the file _setup_session.R
@@ -25,7 +25,7 @@ Finally, run main.R.
 
 ## Explanation of all the produced plots
 Running the code results in some automatically generated pdf/tex/jpeg files. They all start with an initial that indicates which calculation they belong to:
-- DeepOPS
+- DeepOBS
 - MOEA (Multi-Objective Evolutionary Algoritms).
 - BBOB_dim_2 (analysis restricted to test functions with dimension 2).
 - BBOB_dim_all (analysis on all dimensions of the test functions).
