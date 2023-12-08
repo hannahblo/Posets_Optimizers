@@ -17,7 +17,7 @@ First, install all necessary R packages by downloading and sourcing the file _se
 Second, download the main.R file into the appropriate folder where you want to analyze the benchmarking suite.
 
 Third, (depending on what you chose in the second step)
-- for DeepOps analysis: download the deepops_Schneideretal_data_test_loss.csv file and save it in the save folder as main.R (approximate runtime: 1 second)
+- for DeepOps analysis: download the deepops_Schneideretal_data_test_loss.csv file and save it in the same folder as main.R (approximate runtime: 1 second)
 - for Multi-Objective Evolutionary Algorithms: download the 3_stages_DMOP_Wuetal_data_no_std_err.csv file and save it in the same folder as main.R (approximate run time: 10 seconds)
 - for BBOB analysis: download the bbob_ranking.Rdata file into the same folder as main.R (approximate runtime: 7 hours)
   
