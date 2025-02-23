@@ -14,4 +14,4 @@ install.packages("BiocManager")
 BiocManager::install("hasseDiagram")
 
 install.packages("devtools")
-devtools::install_github("hannahblo/ddandrda")
+devtools::install_github("hannahblo/ddandrda", ref = "version_before_nov24")
